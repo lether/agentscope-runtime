@@ -60,6 +60,20 @@ from .generations.image_edit_wan25 import (
 from .generations.image_generation_wan25 import (
     ImageGenerationWan25,
 )
+from .generations.async_text_to_video_wan26 import (
+    TextToVideoWan26Fetch,
+    TextToVideoWan26Submit,
+)
+from .generations.async_image_to_video_wan26 import (
+    ImageToVideoWan26Fetch,
+    ImageToVideoWan26Submit,
+)
+from .generations.image_generation_wan26 import (
+    ImageGenerationWan26,
+)
+from .generations.fetch_wan import (
+    WanVideoFetch,
+)
 
 
 class McpServerMeta(BaseModel):
@@ -115,5 +129,14 @@ mcp_server_metas: Dict[str, McpServerMeta] = {
     "modelstudio_qwen_text_to_speech": McpServerMeta(
         instructions="基于通义千问大模型的语音合成服务，支持多种语言语音合成功能",
         components=[QwenTextToSpeech],
+    ),
+    "modelstudio_wan26_media": McpServerMeta(
+        instructions="基于通义万相大模型2.6版本提供的图像和视频生成服务",
+        components=[
+            ImageGenerationWan26,
+            TextToVideoWan26Submit,
+            ImageToVideoWan26Submit,
+            WanVideoFetch,
+        ],
     ),
 }
